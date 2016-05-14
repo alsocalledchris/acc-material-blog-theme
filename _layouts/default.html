@@ -1,20 +1,65 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
+{% include head.html %}
 
-  {% include head.html %}
-
-  <body>
-
+<body id="head">
+  <!-- Uses a header that scrolls with the text, rather than staying
+  locked at the top -->
+  <div class="mdl-layout mdl-js-layout">
     {% include header.html %}
 
-    <div class="page-content">
-      <div class="wrapper">
+    <div class="ribbon"></div>
+    <main class="demo-main mdl-layout__content">
+       <div class="demo-container mdl-grid">
+      <div class="mdl-cell mdl-cell--3-col mdl-cell--hide-tablet mdl-cell--hide-phone">
+        <div style="padding-top:40vh;margin-left:30px; padding-right:10px;">
+          <h4 style="margin-top:0;">About</h4>
+          <p>
+            This is a emagulation of tweets and small blog posts made by me. Blog posts are generally about tech findings
+            written down to help me and others.
+          </p>
+        </div>
+        <div style="padding-top:5vh;margin-left:30px;" class="tag-buttons">
+          <h4 style="margin-top:0;">Tags</h4>
+         
+         
+          {% assign tags = site.tags | sort %}
+          {% for tag in tags %}
+          <span class="site-tag">
+              <a class="mdl-button mdl-js-button mdl-button--raised" href="/tag/{{ tag | first | slugify }}/">
+                {{ tag[0] | replace:'-', ' ' }} ({{ tag | last | size }})
+              </a>   
+          </span>
+          {% endfor %}
+          
+          
+        </div>
+      </div>
+      <div class="content mdl-color-text--grey-800 mdl-cell mdl-cell--8-col">
         {{ content }}
       </div>
-    </div>
+       </div>
+        {% include footer.html %}
+    </main>
+  </div>
+  <div id="demo-toast-example" class="mdl-js-snackbar mdl-snackbar">
+    <div class="mdl-snackbar__text"></div>
+    <button class="mdl-snackbar__action" type="button"></button>
+  </div>
+</body>
+<script src="scripts/material.min.js"></script>
 
-    {% include footer.html %}
+<script>
+  (function() {
+  'use strict';
+  var snackbarContainer = document.querySelector('#demo-toast-example');
+  window.addEventListener('load', function() {
+    'use strict';
+    var data = {message: 'Cookies ae needed'};
+    snackbarContainer.MaterialSnackbar.showSnackbar(data);
+  });
+}());
 
-  </body>
+</script>
 
 </html>

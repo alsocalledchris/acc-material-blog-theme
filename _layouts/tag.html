@@ -2,7 +2,9 @@
 layout: default
 ---
 
- {% for post in site.posts %}
+<h1>Tag: {{ page.tag }}</h1>
+
+{% for post in site.tags[page.tag] %}
 <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
   <div class="mdl-card  mdl-cell--12-col mdl-shadow--2dp">
       <div class="mdl-card__title" style="padding-bottom:0px;">
@@ -30,5 +32,3 @@ layout: default
 
 <div style="padding-top:20px;"> </div>
 {% endfor %}
-
-<p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p>
